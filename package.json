@@ -1,0 +1,29 @@
+{
+  "name": "api-responses",
+  "version": "1.0.0",
+  "description": "An express middleware to simplify api responses and status codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "Micah Effiong",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micaiah-effiong/api-responses.git"
+  },
+  "bugs": {
+    "url": "https://github.com/micaiah-effiong/api-responses/issues"
+  },
+  "homepage": "https://github.com/micaiah-effiong/api-responses#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.0",
+    "combined-stream": "^1.0.8",
+    "mocha": "^8.3.0",
+    "supertest": "^6.1.3"
+  }
+}
