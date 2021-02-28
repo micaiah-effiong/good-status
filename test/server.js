@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 
 // import api responses
-const simpleStatus = require("../index");
+const goodStatus = require("../index");
 
 // add middleware
 app.use(express.json());
-app.use(simpleStatus());
+app.use(goodStatus());
 
 app.get("/ok", (req, res) => {
   res.ok();
@@ -26,7 +26,7 @@ app.post("/badRequest", (req, res) => {
   });
 });
 
-app.get("/unauthorized", simpleStatus({ send: false }), (req, res) => {
+app.get("/unauthorized", goodStatus({ send: false }), (req, res) => {
   res.unauthorized().json({ msg: "require authentication" });
 });
 

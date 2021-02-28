@@ -1,4 +1,4 @@
-# simple-status
+# good-status
 
 [![Build Status](https://travis-ci.com/micaiah-effiong/api-responses.svg?branch=main)](https://travis-ci.com/micaiah-effiong/api-responses)
 
@@ -8,7 +8,7 @@ Simple express middleware for sending standard status response.
 
 ```bash
 # NPM
-npm i simple-status
+npm i good-status
 ```
 
 # Usage
@@ -16,8 +16,8 @@ npm i simple-status
 ### import and setup
 
 ```js
-var simpleStatus = require("simple-status");
-app.use(simpleStatus());
+var goodStatus = require("good-status");
+app.use(goodStatus());
 ```
 
 This adds extra functions to the response object, for handling responses with accurate status code.
@@ -42,7 +42,7 @@ app.get("/user", (req, res) => {
 To send response body manually
 
 ```js
-app.use(simpleStatus({ send: false }));
+app.use(goodStatus({ send: false }));
 
 app.get("/admin", (req, res) => {
   const data = { msg: "require authentication" };
