@@ -2,15 +2,11 @@ const express = require("express");
 const app = express();
 
 // import api responses
-const apiResponses = require("../index");
+const simpleStatus = require("../index");
 
 // add middleware
 app.use(express.json());
-app.use(
-  apiResponses({
-    send: true,
-  })
-);
+app.use(simpleStatus());
 
 app.get("/ok", (req, res) => {
   res.ok();
@@ -30,8 +26,8 @@ app.post("/badRequest", (req, res) => {
   });
 });
 
-app.get("/unauthorized", (req, res) => {
-  res.unauthorized();
+app.get("/unauthorized", simpleStatus({ send: false }), (req, res) => {
+  res.unauthorized().json({ msg: "require authentication" });
 });
 
 app.get("/forbidden", (req, res) => {
