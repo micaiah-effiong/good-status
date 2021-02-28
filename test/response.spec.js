@@ -17,7 +17,6 @@ describe("Testing responses and Status codes", function () {
         .expect(201)
         .then((res) => {
           assert(res.body.status, "success");
-          console.log(res.body);
           assert(res.body.data.name, "John Doe");
           done();
         })
@@ -40,7 +39,14 @@ describe("Testing responses and Status codes", function () {
 
   describe("GET /unauthorized", function () {
     it("responds with 401", function (done) {
-      request(server).get("/unauthorized").expect(401, done);
+      request(server)
+        .get("/unauthorized")
+        .expect(401)
+        .then((res) => {
+          assert(res.body.msg, "require authentication");
+          done();
+        })
+        .catch(done);
     });
   });
 
