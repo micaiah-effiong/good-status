@@ -1,17 +1,40 @@
 const server = require("./server");
 const request = require("supertest");
-const { expect } = require("chai");
+const { assert } = require("chai");
 
 describe("Testing responses and Status codes", function () {
-  describe("POST /Created", function () {
-    it("responds with 201", function (done) {
-      request(server).post("/created").expect(201, done);
+  describe("GET /ok", function () {
+    it("responds with 200", function (done) {
+      request(server).get("/ok").expect(200, done);
     });
   });
 
-  describe("GET /badRequest", function () {
+  describe("POST /Created", function () {
+    it("responds with 201", function (done) {
+      request(server)
+        .post("/created")
+        .send({ name: "John Doe" })
+        .expect(201)
+        .then((res) => {
+          assert(res.body.status, "success");
+          console.log(res.body);
+          assert(res.body.data.name, "John Doe");
+          done();
+        })
+        .catch(done);
+    });
+  });
+
+  describe("POST /badRequest", function () {
     it("responds with 400", function (done) {
-      request(server).get("/badRequest").expect(400, done);
+      request(server)
+        .post("/badRequest")
+        .expect(400)
+        .then((res) => {
+          assert(res.body.status, "failed");
+          done();
+        })
+        .catch(done);
     });
   });
 
@@ -45,15 +68,15 @@ describe("Testing responses and Status codes", function () {
     });
   });
 
-  describe("GET /serverError", function () {
+  describe("POST /serverError", function () {
     it("responds with 500", function (done) {
-      request(server).get("/serverError").expect(500, done);
+      request(server).post("/serverError").expect(500, done);
     });
   });
 
-  describe("GET /badGateway", function () {
+  describe("POST /badGateway", function () {
     it("responds with 502", function (done) {
-      request(server).get("/badGateway").expect(502, done);
+      request(server).post("/badGateway").expect(502, done);
     });
   });
 
