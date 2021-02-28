@@ -1,5 +1,5 @@
 {
-  "name": "simple-status",
+  "name": "good-status",
   "version": "1.0.0",
   "description": "An express middleware to simplify api responses and status codes",
   "main": "index.js",
@@ -15,12 +15,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/micaiah-effiong/simple-status.git"
+    "url": "git+https://github.com/micaiah-effiong/good-status.git"
   },
   "bugs": {
-    "url": "https://github.com/micaiah-effiong/simple-status/issues"
+    "url": "https://github.com/micaiah-effiong/good-status/issues"
   },
-  "homepage": "https://github.com/micaiah-effiong/simple-status#readme",
+  "homepage": "https://github.com/micaiah-effiong/good-status#readme",
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.3.0",
