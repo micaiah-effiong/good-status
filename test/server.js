@@ -5,45 +5,69 @@ const app = express();
 const apiResponses = require("../index");
 
 // add middleware
-app.use(apiResponses());
+app.use(express.json());
+app.use(
+  apiResponses({
+    send: true,
+  })
+);
 
-app.all("/created", (req, res) => {
-  res.created();
+app.get("/ok", (req, res) => {
+  res.ok();
 });
 
-app.all("/badRequest", (req, res) => {
-  res.badRequest();
+app.post("/created", (req, res) => {
+  res.created({
+    status: "success",
+    data: req.body,
+  });
 });
 
-app.all("/unauthorized", (req, res) => {
+app.post("/badRequest", (req, res) => {
+  res.badRequest({
+    status: "failed",
+    data: req.body,
+  });
+});
+
+app.get("/unauthorized", (req, res) => {
   res.unauthorized();
 });
 
-app.all("/forbidden", (req, res) => {
+app.get("/forbidden", (req, res) => {
   res.forbidden();
 });
 
-app.all("/notFound", (req, res) => {
+app.get("/notFound", (req, res) => {
   res.notFound();
 });
 
-app.all("/conflict", (req, res) => {
-  res.conflict();
+app.post("/conflict", (req, res) => {
+  res.conflict({
+    status: "failed",
+    data: req.body,
+  });
 });
 
-app.all("/invalidToken", (req, res) => {
+app.get("/invalidToken", (req, res) => {
   res.invalidToken();
 });
 
-app.all("/serverError", (req, res) => {
-  res.serverError();
+app.post("/serverError", (req, res) => {
+  res.serverError({
+    status: "failed",
+    data: req.body,
+  });
 });
 
-app.all("/badGateway", (req, res) => {
-  res.badGateway();
+app.post("/badGateway", (req, res) => {
+  res.badGateway({
+    status: "failed",
+    data: req.body,
+  });
 });
 
-app.all("/serviceUnavailable", (req, res) => {
+app.get("/serviceUnavailable", (req, res) => {
   res.serviceUnavailable();
 });
 

@@ -1,5 +1,5 @@
 {
-  "name": "api-responses",
+  "name": "simple-status",
   "version": "1.0.0",
   "description": "An express middleware to simplify api responses and status codes",
   "main": "index.js",
@@ -11,16 +11,16 @@
     "response",
     "status codes"
   ],
-  "author": "Micah Effiong",
+  "author": "Micah Effiong <micaiah.effiong@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/micaiah-effiong/api-responses.git"
+    "url": "git+https://github.com/micaiah-effiong/simple-status.git"
   },
   "bugs": {
-    "url": "https://github.com/micaiah-effiong/api-responses/issues"
+    "url": "https://github.com/micaiah-effiong/simple-status/issues"
   },
-  "homepage": "https://github.com/micaiah-effiong/api-responses#readme",
+  "homepage": "https://github.com/micaiah-effiong/simple-status#readme",
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.3.0",
@@ -28,5 +28,9 @@
     "express": "^4.17.1",
     "mocha": "^8.3.0",
     "supertest": "^6.1.3"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
