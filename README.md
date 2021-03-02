@@ -1,6 +1,6 @@
 # good-status
 
-[![Build Status](https://travis-ci.com/micaiah-effiong/api-responses.svg?branch=main)](https://travis-ci.com/micaiah-effiong/api-responses)
+[![Build Status](https://travis-ci.com/micaiah-effiong/good-status.svg?branch=main)](https://travis-ci.com/micaiah-effiong/good-status)
 
 Simple express middleware for sending standard status response.
 
