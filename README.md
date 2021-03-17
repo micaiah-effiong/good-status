@@ -8,7 +8,7 @@ Simple express middleware for sending standard status response.
 
 ```bash
 # NPM
-npm i good-status
+npm i good-status --save
 ```
 
 # Usage
@@ -39,6 +39,13 @@ app.get("/user", (req, res) => {
 });
 ```
 
+### Options
+
+| Optioins   | Default |                                                  Description |
+| :--------- | :-----: | -----------------------------------------------------------: |
+| send       |  true   | This returns the response object to the user for further use |
+| unofficial |  false  |              This specifies the use of unoficial status code |
+
 To send response body manually
 
 ```js
@@ -50,23 +57,16 @@ app.get("/admin", (req, res) => {
 });
 ```
 
-## Available methods
+To have access to unofficial status codes you have to enable them when initialazing the middleware
 
 ```js
-//2xx success
-res.ok();
-res.created();
-
-//4xx client errors
-res.badRequest();
-res.unauthorized();
-res.forbidden();
-res.notFound();
-res.conflict();
-res.invalidToken();
-
-//5xx server errors
-res.serverError();
-res.badGateway();
-res.serviceUnavailable();
+app.use(goodStatus({ unofficial: true }));
 ```
+
+## Available methods
+
+All `OFFICIAL` and `UNOFFICIAL` status codes are available for use
+
+#### Note:
+
+> To use the unofficial status code, you must specify it while initializing
