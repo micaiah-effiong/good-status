@@ -2,93 +2,777 @@ const server = require("./server");
 const request = require("supertest");
 const { assert } = require("chai");
 
-describe("Testing responses and Status codes", function () {
-  describe("GET /ok", function () {
-    it("responds with 200", function (done) {
-      request(server).get("/ok").expect(200, done);
-    });
-  });
-
-  describe("POST /Created", function () {
-    it("responds with 201", function (done) {
+describe("Official responses and status codes", function () {
+  /*  describe("GET /continue", function () {
+    it("responds with 100", function (done) {
       request(server)
-        .post("/created")
-        .send({ name: "John Doe" })
-        .expect(201)
-        .then((res) => {
-          assert(res.body.status, "success");
-          assert(res.body.data.name, "John Doe");
-          done();
-        })
+        .get("/continue")
+        .expect(100)
+        .then((res) => done())
         .catch(done);
     });
   });
 
-  describe("POST /badRequest", function () {
-    it("responds with 400", function (done) {
+  describe("GET /switchingProtocol", function () {
+    it("responds with 101", function (done) {
       request(server)
-        .post("/badRequest")
-        .expect(400)
-        .then((res) => {
-          assert(res.body.status, "failed");
-          done();
-        })
+        .get("/switchingProtocol")
+        .expect(101)
+        .then((res) => done())
         .catch(done);
     });
   });
 
-  describe("GET /unauthorized", function () {
-    it("responds with 401", function (done) {
+  describe("GET /processing", function () {
+    it("responds with 102", function (done) {
       request(server)
-        .get("/unauthorized")
-        .expect(401)
-        .then((res) => {
-          assert(res.body.msg, "require authentication");
-          done();
-        })
+        .get("/processing")
+        .expect(102)
+        .then((res) => done())
         .catch(done);
     });
   });
 
-  describe("GET /forbidden", function () {
-    it("responds with 403", function (done) {
-      request(server).get("/forbidden").expect(403, done);
+  describe("GET /earlyHint", function () {
+    it("responds with 103", function (done) {
+      request(server)
+        .get("/earlyHint")
+        .expect(103)
+        .then((res) => done())
+        .catch(done);
+    });
+  });*/
+
+  describe("200+ responses", function () {
+    describe("GET /ok", function () {
+      it("responds with 200", function (done) {
+        request(server)
+          .get("/ok")
+          .expect(200)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("POST /Created", function () {
+      it("responds with 201", function (done) {
+        request(server)
+          .post("/created")
+          .send({ name: "John Doe" })
+          .expect(201)
+          .then((res) => {
+            assert(res.body.status, "success");
+            assert(res.body.data.name, "John Doe");
+            done();
+          })
+          .catch(done);
+      });
+    });
+
+    describe("GET /accepted", function () {
+      it("responds with 202", function (done) {
+        request(server)
+          .get("/accepted")
+          .expect(202)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /nonAuthoritativeInformation", function () {
+      it("responds with 203", function (done) {
+        request(server)
+          .get("/nonAuthoritativeInformation")
+          .expect(203)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /noContent", function () {
+      it("responds with 204", function (done) {
+        request(server)
+          .get("/noContent")
+          .expect(204)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /resetContent", function () {
+      it("responds with 205", function (done) {
+        request(server)
+          .get("/resetContent")
+          .expect(205)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /partialContent", function () {
+      it("responds with 206", function (done) {
+        request(server)
+          .get("/partialContent")
+          .expect(206)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /mulitStatus", function () {
+      it("responds with 207", function (done) {
+        request(server)
+          .get("/mulitStatus")
+          .expect(207)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /alreadyReported", function () {
+      it("responds with 208", function (done) {
+        request(server)
+          .get("/alreadyReported")
+          .expect(208)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /imUsed", function () {
+      it("responds with 226", function (done) {
+        request(server)
+          .get("/imUsed")
+          .expect(226)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+  });
+  describe("300+ responses", function () {
+    describe("GET /multipleChoice", function () {
+      it("responds with 300", function (done) {
+        request(server)
+          .get("/multipleChoice")
+          .expect(300)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /movedPermanently", function () {
+      it("responds with 301", function (done) {
+        request(server)
+          .get("/movedPermanently")
+          .expect(301)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /found", function () {
+      it("responds with 302", function (done) {
+        request(server)
+          .get("/found")
+          .expect(302)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /seeOther", function () {
+      it("responds with 303", function (done) {
+        request(server)
+          .get("/seeOther")
+          .expect(303)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /notModified", function () {
+      it("responds with 304", function (done) {
+        request(server)
+          .get("/notModified")
+          .expect(304)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /useProxy", function () {
+      it("responds with 305", function (done) {
+        request(server)
+          .get("/useProxy")
+          .expect(305)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /unused", function () {
+      it("responds with 306", function (done) {
+        request(server)
+          .get("/unused")
+          .expect(306)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /temporaryRedirect", function () {
+      it("responds with 307", function (done) {
+        request(server)
+          .get("/temporaryRedirect")
+          .expect(307)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /permanentRedirect", function () {
+      it("responds with 308", function (done) {
+        request(server)
+          .get("/permanentRedirect")
+          .expect(308)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+  });
+  describe("400+ responses", function () {
+    describe("POST /badRequest", function () {
+      it("responds with 400", function (done) {
+        request(server)
+          .post("/badRequest")
+          .expect(400)
+          .then((res) => {
+            assert(res.body.status, "failed");
+            done();
+          })
+          .catch(done);
+      });
+    });
+
+    describe("GET /unauthorized", function () {
+      it("responds with 401", function (done) {
+        request(server)
+          .get("/unauthorized")
+          .expect(401)
+          .then((res) => {
+            assert(res.body.msg, "require authentication");
+            done();
+          })
+          .catch(done);
+      });
+    });
+
+    describe("GET /paymentRequired", function () {
+      it("responds with 402", function (done) {
+        request(server)
+          .get("/paymentRequired")
+          .expect(402)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /forbidden", function () {
+      it("responds with 403", function (done) {
+        request(server)
+          .get("/forbidden")
+          .expect(403)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /notFound", function () {
+      it("responds with 404", function (done) {
+        request(server)
+          .get("/notFound")
+          .expect(404)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /methodNotAllowed", function () {
+      it("responds with 405", function (done) {
+        request(server)
+          .get("/methodNotAllowed")
+          .expect(405)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /notAcceptable", function () {
+      it("responds with 406", function (done) {
+        request(server)
+          .get("/notAcceptable")
+          .expect(406)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /proxyAuthenticationRequired", function () {
+      it("responds with 407", function (done) {
+        request(server)
+          .get("/proxyAuthenticationRequired")
+          .expect(407)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /requestTimeout", function () {
+      it("responds with 408", function (done) {
+        request(server)
+          .get("/requestTimeout")
+          .expect(408)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("post /conflict", function () {
+      it("responds with 409", function (done) {
+        request(server)
+          .post("/conflict")
+          .expect(409)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /gone", function () {
+      it("responds with 410", function (done) {
+        request(server)
+          .get("/gone")
+          .expect(410)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /lengthRequired", function () {
+      it("responds with 411", function (done) {
+        request(server)
+          .get("/lengthRequired")
+          .expect(411)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /preconditionFailed", function () {
+      it("responds with 412", function (done) {
+        request(server)
+          .get("/preconditionFailed")
+          .expect(412)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /payloadTooLarge", function () {
+      it("responds with 413", function (done) {
+        request(server)
+          .get("/payloadTooLarge")
+          .expect(413)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /uriTooLong", function () {
+      it("responds with 414", function (done) {
+        request(server)
+          .get("/uriTooLong")
+          .expect(414)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /unsupportedMediaType", function () {
+      it("responds with 415", function (done) {
+        request(server)
+          .get("/unsupportedMediaType")
+          .expect(415)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /rangeNotSatisfiable", function () {
+      it("responds with 416", function (done) {
+        request(server)
+          .get("/rangeNotSatisfiable")
+          .expect(416)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /expectationFailed", function () {
+      it("responds with 417", function (done) {
+        request(server)
+          .get("/expectationFailed")
+          .expect(417)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /iAmATeapot", function () {
+      it("responds with 418", function (done) {
+        request(server)
+          .get("/iAmATeapot")
+          .expect(418)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /misdirectedRequest", function () {
+      it("responds with 421", function (done) {
+        request(server)
+          .get("/misdirectedRequest")
+          .expect(421)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /unprocessableEntry", function () {
+      it("responds with 422", function (done) {
+        request(server)
+          .get("/unprocessableEntry")
+          .expect(422)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /locked", function () {
+      it("responds with 423", function (done) {
+        request(server)
+          .get("/locked")
+          .expect(423)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /failedDependency", function () {
+      it("responds with 424", function (done) {
+        request(server)
+          .get("/failedDependency")
+          .expect(424)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /tooEarly", function () {
+      it("responds with 425", function (done) {
+        request(server)
+          .get("/tooEarly")
+          .expect(425)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /upgradeRequired", function () {
+      it("responds with 426", function (done) {
+        request(server)
+          .get("/upgradeRequired")
+          .expect(426)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /preconditionRequired", function () {
+      it("responds with 428", function (done) {
+        request(server)
+          .get("/preconditionRequired")
+          .expect(428)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /tooManyRequest", function () {
+      it("responds with 429", function (done) {
+        request(server)
+          .get("/tooManyRequest")
+          .expect(429)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /requestHeaderFieldsTooLarge", function () {
+      it("responds with 431", function (done) {
+        request(server)
+          .get("/requestHeaderFieldsTooLarge")
+          .expect(431)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /httpUnavailableForLegalReasons", function () {
+      it("responds with 451", function (done) {
+        request(server)
+          .get("/httpUnavailableForLegalReasons")
+          .expect(451)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+  });
+  describe("500+ responses", function () {
+    describe("POST /internalServerError", function () {
+      it("responds with 500", function (done) {
+        request(server)
+          .post("/internalServerError")
+          .expect(500)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /notImplemented", function () {
+      it("responds with 501", function (done) {
+        request(server)
+          .get("/notImplemented")
+          .expect(501)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("POST /badGateway", function () {
+      it("responds with 502", function (done) {
+        request(server)
+          .post("/badGateway")
+          .expect(502)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /serviceUnavailable", function () {
+      it("responds with 503", function (done) {
+        request(server)
+          .get("/serviceUnavailable")
+          .expect(503)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /gatewayTimeout", function () {
+      it("responds with 504", function (done) {
+        request(server)
+          .get("/gatewayTimeout")
+          .expect(504)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /httpVersionNotSupported", function () {
+      it("responds with 505", function (done) {
+        request(server)
+          .get("/httpVersionNotSupported")
+          .expect(505)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /variantAlsoNegotiates", function () {
+      it("responds with 506", function (done) {
+        request(server)
+          .get("/variantAlsoNegotiates")
+          .expect(506)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /insufficientStorage", function () {
+      it("responds with 507", function (done) {
+        request(server)
+          .get("/insufficientStorage")
+          .expect(507)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /loopDetected", function () {
+      it("responds with 508", function (done) {
+        request(server)
+          .get("/loopDetected")
+          .expect(508)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /notExtended", function () {
+      it("responds with 510", function (done) {
+        request(server)
+          .get("/notExtended")
+          .expect(510)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /networkAuthenticationRequired", function () {
+      it("responds with 511", function (done) {
+        request(server)
+          .get("/networkAuthenticationRequired")
+          .expect(511)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+  });
+});
+
+describe("Unofficial responses and status codes", function () {
+  // describe("GET /checkpoint", function () {
+  //   it("responds with 103", function (done) {
+  //     request(server)
+  //       .get("/checkpoint")
+  //       .expect(103)
+  //       .then((res) => done())
+  //       .catch(done);
+  //   });
+  // });
+  describe("200+ responses", function () {
+    describe("GET /thisIsFine", function () {
+      it("responds with 218", function (done) {
+        request(server)
+          .get("/thisIsFine")
+          .expect(218)
+          .then((res) => done())
+          .catch(done);
+      });
     });
   });
 
-  describe("GET /notFound", function () {
-    it("responds with 404", function (done) {
-      request(server).get("/notFound").expect(404, done);
+  describe("400+ responses", function () {
+    describe("GET /pageExpired", function () {
+      it("responds with 419", function (done) {
+        request(server)
+          .get("/pageExpired")
+          .expect(419)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /enhanceYourCalm", function () {
+      it("responds with 420", function (done) {
+        request(server)
+          .get("/enhanceYourCalm")
+          .expect(420)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /uRequestHeaderFieldsTooLarge", function () {
+      it("responds with 430", function (done) {
+        request(server)
+          .get("/uRequestHeaderFieldsTooLarge")
+          .expect(430)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /invalidToken", function () {
+      it("responds with 498", function (done) {
+        request(server)
+          .get("/invalidToken")
+          .expect(498)
+          .then((res) => done())
+          .catch(done);
+      });
+    });
+
+    describe("GET /tokenRequired", function () {
+      it("responds with 499", function (done) {
+        request(server)
+          .get("/tokenRequired")
+          .expect(499)
+          .then((res) => done())
+          .catch(done);
+      });
     });
   });
 
-  describe("post /conflict", function () {
-    it("responds with 409", function (done) {
-      request(server).post("/conflict").expect(409, done);
+  describe("500+ responses", function () {
+    describe("GET /bandwidthLimitExceeded", function () {
+      it("responds with 509", function (done) {
+        request(server)
+          .get("/bandwidthLimitExceeded")
+          .expect(509)
+          .then((res) => done())
+          .catch(done);
+      });
     });
-  });
 
-  describe("GET /invalidToken", function () {
-    it("responds with 498", function (done) {
-      request(server).get("/invalidToken").expect(498, done);
+    describe("GET /invalidSSLCertificate", function () {
+      it("responds with 526", function (done) {
+        request(server)
+          .get("/invalidSSLCertificate")
+          .expect(526)
+          .then((res) => done())
+          .catch(done);
+      });
     });
-  });
 
-  describe("POST /serverError", function () {
-    it("responds with 500", function (done) {
-      request(server).post("/serverError").expect(500, done);
+    describe("GET /siteIsOverLoaded", function () {
+      it("responds with 529", function (done) {
+        request(server)
+          .get("/siteIsOverLoaded")
+          .expect(529)
+          .then((res) => done())
+          .catch(done);
+      });
     });
-  });
 
-  describe("POST /badGateway", function () {
-    it("responds with 502", function (done) {
-      request(server).post("/badGateway").expect(502, done);
+    describe("GET /siteIsFrozen", function () {
+      it("responds with 530", function (done) {
+        request(server)
+          .get("/siteIsFrozen")
+          .expect(530)
+          .then((res) => done())
+          .catch(done);
+      });
     });
-  });
 
-  describe("GET /serviceUnavailable", function () {
-    it("responds with 503", function (done) {
-      request(server).get("/serviceUnavailable").expect(503, done);
+    describe("GET /networkReadTimeoutError", function () {
+      it("responds with 598", function (done) {
+        request(server)
+          .get("/networkReadTimeoutError")
+          .expect(598)
+          .then((res) => done())
+          .catch(done);
+      });
     });
   });
 });
