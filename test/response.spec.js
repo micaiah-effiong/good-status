@@ -3,46 +3,6 @@ const request = require("supertest");
 const { assert } = require("chai");
 
 describe("Official responses and status codes", function () {
-  /*  describe("GET /continue", function () {
-    it("responds with 100", function (done) {
-      request(server)
-        .get("/continue")
-        .expect(100)
-        .then((res) => done())
-        .catch(done);
-    });
-  });
-
-  describe("GET /switchingProtocol", function () {
-    it("responds with 101", function (done) {
-      request(server)
-        .get("/switchingProtocol")
-        .expect(101)
-        .then((res) => done())
-        .catch(done);
-    });
-  });
-
-  describe("GET /processing", function () {
-    it("responds with 102", function (done) {
-      request(server)
-        .get("/processing")
-        .expect(102)
-        .then((res) => done())
-        .catch(done);
-    });
-  });
-
-  describe("GET /earlyHint", function () {
-    it("responds with 103", function (done) {
-      request(server)
-        .get("/earlyHint")
-        .expect(103)
-        .then((res) => done())
-        .catch(done);
-    });
-  });*/
-
   describe("200+ responses", function () {
     describe("GET /ok", function () {
       it("responds with 200", function (done) {
