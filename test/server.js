@@ -114,8 +114,8 @@ app.post("/badRequest", (req, res) => {
   });
 });
 
-app.get("/unauthorized", goodStatus({ send: false }), (req, res) => {
-  res.unauthorized().json({ msg: "require authentication" });
+app.get("/unauthorized", (req, res) => {
+  res.unauthorized({ msg: "require authentication" });
 });
 
 app.get("/paymentRequired", (req, res) => {
@@ -341,8 +341,8 @@ app.get("/networkReadTimeoutError", (req, res) => {
   res.networkReadTimeoutError();
 });
 
-// app.get("/ok", (req, res) => {
-//   res.ok();
-// });
+app.get("/sendConfig", goodStatus({ send: false }), (req, res) => {
+  res.ok().json({ msg: "require authentication" });
+});
 
 module.exports = server;
