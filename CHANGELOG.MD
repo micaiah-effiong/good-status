@@ -1,7 +1,15 @@
 # Changelog
 
-## [1.0.1] - 2021-03-17
- - Added CHANGELOG
+## [2.0.0] - 2021-03-17
+
+### Added
+ - CHANGELOG
+ - Full officai status code
+ - Unofficial status code
+ - Configuration for use unofficial status code
+
+### Changed
+ - Use off unofficial status code is optional
 
 ## [1.0.0] - 2021-02-28
 
@@ -21,4 +29,4 @@ This project adheres to [Sematic Versioning](https://semver.org/spec/v2.0.0.html
    - serverError
    - badGateway
    - serviceUnavailable
- - Added a README that explains the middleware and adds examples
+ - README that explains the middleware and adds examples
