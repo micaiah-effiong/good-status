@@ -41,9 +41,9 @@ app.get("/user", (req, res) => {
 
 ### Options
 
-|  Optioins  | Default | Description                                                  |
-| :--------: | :-----: | :----------------------------------------------------------- |
-|    send    |  true   | This returns the response object to the user for further use |
+| Optioins   | Default | Description                                                  |
+| :--------- | :-----: | :----------------------------------------------------------- |
+| send       |  true   | This returns the response object to the user for further use |
 | unofficial |  false  | This specifies the use of unoficial status code              |
 
 To send response body manually
