@@ -1,6 +1,6 @@
 {
   "name": "good-status",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "An express middleware to simplify api responses and status codes",
   "main": "index.js",
   "scripts": {
