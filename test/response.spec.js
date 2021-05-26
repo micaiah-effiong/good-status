@@ -2,6 +2,9 @@ const server = require("./server");
 const request = require("supertest");
 const { assert } = require("chai");
 
+/*
+Test for HTTP official status code
+*/
 describe("Official responses and status codes", function () {
   describe("200+ responses", function () {
     describe("GET /ok", function () {
@@ -610,6 +613,9 @@ describe("Official responses and status codes", function () {
   });
 });
 
+/*
+Test for HTTP unofficial status code
+*/
 describe("Unofficial responses and status codes", function () {
   // describe("GET /checkpoint", function () {
   //   it("responds with 103", function (done) {
@@ -733,6 +739,199 @@ describe("Unofficial responses and status codes", function () {
           .then((res) => done())
           .catch(done);
       });
+    });
+  });
+});
+
+/*
+Test for HTTP Information Service status code
+*/
+describe("Information Service responses and status codes", function () {
+  describe("GET /ifs-login-time-out", function () {
+    it("responds with 440", function (done) {
+      request(server)
+        .get("/ifs-login-time-out")
+        .expect(440)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+  describe("GET /ifs-retry-with", function () {
+    it("responds with 449", function (done) {
+      request(server)
+        .get("/ifs-retry-with")
+        .expect(449)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+  describe("GET /ifs-redirect", function () {
+    it("responds with 451", function (done) {
+      request(server)
+        .get("/ifs-redirect")
+        .expect(451)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+});
+
+/*
+Test for HTTP nginx status code
+*/
+describe("Nginx responses and status codes", function () {
+  describe("GET /nx-no-response", function () {
+    it("responds with 444", function (done) {
+      request(server)
+        .get("/nx-no-response")
+        .expect(444)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /nx-header-too-large", function () {
+    it("responds with 494", function (done) {
+      request(server)
+        .get("/nx-header-too-large")
+        .expect(494)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /nx-ssl-cert-error", function () {
+    it("responds with 495", function (done) {
+      request(server)
+        .get("/nx-ssl-cert-error")
+        .expect(495)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /nx-ssl-cert-required", function () {
+    it("responds with 496", function (done) {
+      request(server)
+        .get("/nx-ssl-cert-required")
+        .expect(496)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /nx-sent-to-https-port", function () {
+    it("responds with 497", function (done) {
+      request(server)
+        .get("/nx-sent-to-https-port")
+        .expect(497)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /nx-client-closed-request", function () {
+    it("responds with 499", function (done) {
+      request(server)
+        .get("/nx-client-closed-request")
+        .expect(499)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+});
+
+/*
+Test for HTTP cloudflare status code
+*/
+describe("Cloudflare responses and status codes", function () {
+  describe("GET /cf-web-server-returned-unknown-error", function () {
+    it("responds with 520", function (done) {
+      request(server)
+        .get("/cf-web-server-returned-unknown-error")
+        .expect(520)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-server-is-down", function () {
+    it("responds with 521", function (done) {
+      request(server)
+        .get("/cf-server-is-down")
+        .expect(521)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-connection-timed-out", function () {
+    it("responds with 522", function (done) {
+      request(server)
+        .get("/cf-connection-timed-out")
+        .expect(522)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-origin-is-unreachable", function () {
+    it("responds with 523", function (done) {
+      request(server)
+        .get("/cf-origin-is-unreachable")
+        .expect(523)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-a-timeout-occured", function () {
+    it("responds with 524", function (done) {
+      request(server)
+        .get("/cf-a-timeout-occured")
+        .expect(524)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-ssl-handshake-failed", function () {
+    it("responds with 525", function (done) {
+      request(server)
+        .get("/cf-ssl-handshake-failed")
+        .expect(525)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-invalid-ssl-cert", function () {
+    it("responds with 526", function (done) {
+      request(server)
+        .get("/cf-invalid-ssl-cert")
+        .expect(526)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-railgun-error", function () {
+    it("responds with 527", function (done) {
+      request(server)
+        .get("/cf-railgun-error")
+        .expect(527)
+        .then((res) => done())
+        .catch(done);
+    });
+  });
+
+  describe("GET /cf-not-logged-in", function () {
+    it("responds with 530", function (done) {
+      request(server)
+        .get("/cf-not-logged-in")
+        .expect(530)
+        .then((res) => done())
+        .catch(done);
     });
   });
 });
