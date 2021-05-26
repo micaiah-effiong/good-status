@@ -286,6 +286,9 @@ app.get("/networkAuthenticationRequired", (req, res) => {
 app.use(
   goodStatus({
     unofficial: true,
+    infoService: true,
+    nginx: true,
+    cloudflare: true,
   })
 );
 
@@ -343,6 +346,73 @@ app.get("/networkReadTimeoutError", (req, res) => {
 
 app.get("/sendConfig", goodStatus({ send: false }), (req, res) => {
   res.ok().json({ msg: "require authentication" });
+});
+
+app.get("/ifs-login-time-out", (req, res) => {
+  res.loginTimeout();
+});
+
+app.get("/ifs-retry-with", (req, res) => {
+  res.retryWith();
+});
+
+app.get("/ifs-redirect", (req, res) => {
+  res.redirect();
+});
+
+app.get("/nx-no-response", (req, res) => {
+  res.noResponse();
+});
+app.get("/nx-header-too-large", (req, res) => {
+  res.headerTooLarge();
+});
+app.get("/nx-ssl-cert-error", (req, res) => {
+  res.sslCertError();
+});
+app.get("/nx-ssl-cert-required", (req, res) => {
+  res.sslCertRequired();
+});
+app.get("/nx-sent-to-https-port", (req, res) => {
+  res.sentToHttpsPort();
+});
+app.get("/nx-client-closed-request", (req, res) => {
+  res.clientClosedRequest();
+});
+
+app.get("/cf-web-server-returned-unknown-error", (req, res) => {
+  res.webServerReturnedAnUnknownError();
+});
+
+app.get("/cf-server-is-down", (req, res) => {
+  res.webServerIsDown();
+});
+
+app.get("/cf-connection-timed-out", (req, res) => {
+  res.connectionTimedOut();
+});
+
+app.get("/cf-origin-is-unreachable", (req, res) => {
+  res.originIsUnreachable();
+});
+
+app.get("/cf-a-timeout-occured", (req, res) => {
+  res.aTimeoutOccurred();
+});
+
+app.get("/cf-ssl-handshake-failed", (req, res) => {
+  res.sslHandshakeFailed();
+});
+
+app.get("/cf-invalid-ssl-cert", (req, res) => {
+  res.invalidSslCertificate();
+});
+
+app.get("/cf-railgun-error", (req, res) => {
+  res.railgunError();
+});
+
+app.get("/cf-not-logged-in", (req, res) => {
+  res.notLoggedIn();
 });
 
 module.exports = server;
