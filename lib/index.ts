@@ -1,15 +1,14 @@
-const status = require("./responses");
-const { setStatusHandler } = require("./utils");
+import { NextFunction, Request, Response } from "express";
+import * as status from "./responses";
+import goodStatus, { Options } from "../types";
+import { setStatusHandler } from "./utils";
 
-/*
- * @param {Object} config - middlware configuration object
+/**
+ * @param {Options} config - middlware configuration object
  * @return {Function} - middlware
  * @public
  */
-function init(config) {
-  // create configuration object if not passed in
-  config = config || {};
-
+function init<T>(config: Options = {}) {
   if (Array.isArray(config) || typeof config !== "object") {
     throw new Error("config must be an object");
   }
@@ -18,7 +17,6 @@ function init(config) {
     config.send = true;
   }
 
-  // TODO: checking config.statusAttribute for string type
   if (!config.statusAttribute || typeof config.statusAttribute !== "string") {
     config.extend = false;
   } else {
@@ -28,12 +26,13 @@ function init(config) {
   const goodStatus = Object.create(null); // create gs object
   goodStatus.config = config; // add user config
 
-  return function (req, res, next) {
+  return function (_: Request, res: Response, next: NextFunction) {
     res.goodStatus = goodStatus; // add gs to response
 
-    let attach;
-    if (res.goodStatus.config.extend) {
-      attach = res[res.goodStatus.config.statusAttribute] = Object.create(null);
+    let attach: any;
+    if (res.goodStatus.config.extend && res.goodStatus.config.statusAttribute) {
+      const statusAttribute = res.goodStatus.config.statusAttribute;
+      attach = res[statusAttribute] = Object.create(null);
     } else {
       attach = res;
     }
@@ -61,4 +60,5 @@ function init(config) {
     return next();
   };
 }
-module.exports = init;
+
+export default init;

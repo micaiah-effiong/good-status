@@ -1,15 +1,14 @@
-const { should } = require("chai");
-const gs = require("../lib");
+import gs from "../lib";
 
 describe("Initialising gs middleware with wrong congiguration", function () {
   it("set wrong configuration data type", function () {
-    const init = () => gs(" ");
-    should().throw(init, "config must be an object");
+    const init = () => gs(" " as GoodStatus.Config);
+    expect(init).toThrow("config must be an object");
   });
 
   it("set middleware configuration to array type", function () {
-    const init = () => gs(new Array());
-    should().throw(init, "config must be an object");
+    const init = () => gs(new Array() as GoodStatus.Config);
+    expect(init).toThrow("config must be an object");
   });
 
   /*  it("set invalid resValue in middleware config", function () {
@@ -26,38 +25,38 @@ describe("Initialise gs middleware", function () {
   describe("initialise without statusAttribute", function () {
     it("set status code functions on response object", function () {
       const mid = gs();
-      const req = {};
-      const res = {};
+      const req: any = {};
+      const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      should().not.exist(res.gs, "no status attribute attached");
+      expect(res.gs).not.toBeDefined();
     });
   });
 
   describe("initialise with statusAttribute", function () {
     const mid = gs({ statusAttribute: "gs" });
     it("set status code functions on response object", function () {
-      const req = {};
-      const res = {};
+      const req: any = {};
+      const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      should().exist(res.gs, "status attribute attached");
+      expect(res.gs).toBeDefined();
     });
 
     it("should have ok() method on gs Object", function () {
-      const req = {};
-      const res = {};
+      const req: any = {};
+      const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      should().exist(res.gs.ok, "ok method exists");
+      expect(res.gs.ok).toBeDefined();
     });
 
     it("should have badRequest()", function () {
-      const req = {};
-      const res = {};
+      const req: any = {};
+      const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      should().exist(res.gs, "badRequest method exists");
+      expect(res.gs).toBeDefined();
     });
   });
 });

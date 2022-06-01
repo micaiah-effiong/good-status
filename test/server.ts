@@ -1,15 +1,24 @@
-const express = require("express");
-const http = require("http");
+import http from "http";
+import express from "express";
+import goodStatus from "../lib/index";
+
 const app = express();
 const server = http.createServer(app);
 
 // import api responses
-const goodStatus = require("../index");
 
 // add middleware
 app.use(express.json());
 app.use(goodStatus());
-
+app.use(
+  goodStatus({
+    unofficial: true,
+    infoService: true,
+    nginx: true,
+    cloudflare: true,
+    statusAttribute: "gs",
+  })
+);
 /*app.get("/continue", (req, res) => {
   res.continue();
 });
@@ -32,14 +41,12 @@ app.get("/ok", (req, res) => {
 
 // 2XX
 app.post("/created", (req, res) => {
-  res.created({
-    status: "success",
-    data: req.body,
-  });
+  res.created(req.body);
 });
 
 app.get("/accepted", (req, res) => {
-  res.accepted();
+  // res.accepted();
+  res.goodStatus.accepted();
 });
 
 app.get("/nonAuthoritativeInformation", (req, res) => {
@@ -71,7 +78,7 @@ app.get("/imUsed", (req, res) => {
 });
 
 app.get("/multipleChoice", (req, res) => {
-  res.multipleChoice();
+  res.multipleChoices();
 });
 
 app.get("/movedPermanently", (req, res) => {
@@ -194,7 +201,7 @@ app.get("/misdirectedRequest", (req, res) => {
 });
 
 app.get("/unprocessableEntry", (req, res) => {
-  res.unprocessableEntry();
+  res.unprocessableEntity();
 });
 
 app.get("/locked", (req, res) => {
@@ -218,7 +225,7 @@ app.get("/preconditionRequired", (req, res) => {
 });
 
 app.get("/tooManyRequest", (req, res) => {
-  res.tooManyRequest();
+  res.tooManyRequests();
 });
 
 app.get("/requestHeaderFieldsTooLarge", (req, res) => {
@@ -226,7 +233,7 @@ app.get("/requestHeaderFieldsTooLarge", (req, res) => {
 });
 
 app.get("/httpUnavailableForLegalReasons", (req, res) => {
-  res.httpUnavailableForLegalReasons();
+  res.unavailableForLegalReasons();
 });
 
 //5XX
@@ -357,7 +364,7 @@ app.get("/ifs-retry-with", (req, res) => {
 });
 
 app.get("/ifs-redirect", (req, res) => {
-  res.redirect();
+  res.ifRedirect();
 });
 
 app.get("/nx-no-response", (req, res) => {
@@ -395,7 +402,7 @@ app.get("/cf-origin-is-unreachable", (req, res) => {
   res.originIsUnreachable();
 });
 
-app.get("/cf-a-timeout-occured", (req, res) => {
+app.get("/cf-a-timeout-occurred", (req, res) => {
   res.aTimeoutOccurred();
 });
 
@@ -403,7 +410,7 @@ app.get("/cf-ssl-handshake-failed", (req, res) => {
   res.sslHandshakeFailed();
 });
 
-app.get("/cf-invalid-ssl-cert", (req, res) => {
+app.get("/cf-invalid-ssl-certificate", (req, res) => {
   res.invalidSslCertificate();
 });
 
@@ -415,4 +422,4 @@ app.get("/cf-not-logged-in", (req, res) => {
   res.notLoggedIn();
 });
 
-module.exports = server;
+export default server;

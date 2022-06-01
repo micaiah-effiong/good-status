@@ -1,6 +1,5 @@
-const server = require("./server");
-const request = require("supertest");
-const { assert } = require("chai");
+import server from "./server";
+import request from "supertest";
 
 /*
 Test for HTTP official status code
@@ -8,37 +7,26 @@ Test for HTTP official status code
 describe("Official responses and status codes", function () {
   describe("200+ responses", function () {
     describe("GET /ok", function () {
-      it("responds with 200", function (done) {
-        request(server)
-          .get("/ok")
-          .expect(200)
-          .then((res) => done())
-          .catch(done);
+      it("responds with 200", async function () {
+        await request(server).get("/ok").expect(200);
       });
     });
 
     describe("POST /Created", function () {
-      it("responds with 201", function (done) {
-        request(server)
+      it("responds with 201", async () => {
+        const res = await request(server)
           .post("/created")
-          .send({ name: "John Doe" })
-          .expect(201)
-          .then((res) => {
-            assert(res.body.status, "success");
-            assert(res.body.data.name, "John Doe");
-            done();
-          })
-          .catch(done);
+          .send({ name: "John Doe", status: "success" })
+          .expect(201);
+
+        expect(res.body.status).toEqual("success");
+        expect(res.body.name).toEqual("John Doe");
       });
     });
 
     describe("GET /accepted", function () {
-      it("responds with 202", function (done) {
-        request(server)
-          .get("/accepted")
-          .expect(202)
-          .then((res) => done())
-          .catch(done);
+      it("responds with 202", async () => {
+        request(server).get("/accepted").expect(202);
       });
     });
 
@@ -208,9 +196,10 @@ describe("Official responses and status codes", function () {
       it("responds with 400", function (done) {
         request(server)
           .post("/badRequest")
+          .send({ status: "failed" })
           .expect(400)
           .then((res) => {
-            assert(res.body.status, "failed");
+            expect(res.body.status).toEqual("failed");
             done();
           })
           .catch(done);
@@ -221,9 +210,10 @@ describe("Official responses and status codes", function () {
       it("responds with 401", function (done) {
         request(server)
           .get("/unauthorized")
+          .send({ msg: "require authentication" })
           .expect(401)
           .then((res) => {
-            assert(res.body.msg, "require authentication");
+            expect(res.body.msg).toEqual("require authentication");
             done();
           })
           .catch(done);
@@ -885,10 +875,10 @@ describe("Cloudflare responses and status codes", function () {
     });
   });
 
-  describe("GET /cf-a-timeout-occured", function () {
+  describe("GET /cf-a-timeout-occurred", function () {
     it("responds with 524", function (done) {
       request(server)
-        .get("/cf-a-timeout-occured")
+        .get("/cf-a-timeout-occurred")
         .expect(524)
         .then((res) => done())
         .catch(done);
@@ -905,10 +895,10 @@ describe("Cloudflare responses and status codes", function () {
     });
   });
 
-  describe("GET /cf-invalid-ssl-cert", function () {
+  describe("GET /cf-invalid-ssl-certificate", function () {
     it("responds with 526", function (done) {
       request(server)
-        .get("/cf-invalid-ssl-cert")
+        .get("/cf-invalid-ssl-certificate")
         .expect(526)
         .then((res) => done())
         .catch(done);
