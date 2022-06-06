@@ -1,7 +1,8 @@
+import { Responses } from "../types";
 import status from "./status-codes";
 import { getCodeFn } from "./utils";
 
-const official: GoodStatus.Responses.Official = {
+export const official: Responses.Official = {
   // 2**
   ok: getCodeFn(status.OFFICIAL.HTTP_OK),
   created: getCodeFn(status.OFFICIAL.HTTP_CREATED),
@@ -84,7 +85,7 @@ const official: GoodStatus.Responses.Official = {
   ),
 };
 
-const unofficial: GoodStatus.Responses.Unofficial = {
+export const unofficial: Responses.Unofficial = {
   thisIsFine: getCodeFn(status.UNOFFICIAL.HTTP_THIS_IS_FINE),
   pageExpired: getCodeFn(status.UNOFFICIAL.HTTP_PAGE_EXPIRED),
   enhanceYourCalm: getCodeFn(status.UNOFFICIAL.HTTP_ENHANCE_YOUR_CALM),
@@ -109,7 +110,7 @@ const unofficial: GoodStatus.Responses.Unofficial = {
   ),
 };
 
-const infoService: GoodStatus.Responses.InfoService = {
+export const infoService: Responses.InfoService = {
   loginTimeout: getCodeFn(
     status.INTERNET_INFORMATION_SERVICE.HTTP_LOGIN_TIME_OUT
   ),
@@ -117,7 +118,7 @@ const infoService: GoodStatus.Responses.InfoService = {
   ifRedirect: getCodeFn(status.INTERNET_INFORMATION_SERVICE.HTTP_REDIRECT),
 };
 
-const nginx: GoodStatus.Responses.Nginx = {
+export const nginx: Responses.Nginx = {
   noResponse: getCodeFn(status.NGINX.HTTP_NO_RESPONSE),
   headerTooLarge: getCodeFn(status.NGINX.HTTP_REQUEST_HEADER_TOO_LARGE),
   sslCertError: getCodeFn(status.NGINX.HTTP_SSL_CERTIFICATE_ERROR),
@@ -126,7 +127,7 @@ const nginx: GoodStatus.Responses.Nginx = {
   clientClosedRequest: getCodeFn(status.NGINX.HTTP_CLIENT_CLOSED_REQUEST),
 };
 
-const cloudflare: GoodStatus.Responses.Cloudflare = {
+export const cloudflare: Responses.Cloudflare = {
   webServerReturnedAnUnknownError: getCodeFn(
     status.CLOUDFLARE.HTTP_WEB_SERVER_RETURNED_AN_UNKNOWN_ERROR
   ),
@@ -141,5 +142,3 @@ const cloudflare: GoodStatus.Responses.Cloudflare = {
   railgunError: getCodeFn(status.CLOUDFLARE.HTTP_RAILGUN_ERROR),
   notLoggedIn: getCodeFn(status.CLOUDFLARE.HTTP_NOT_LOGGED_IN),
 };
-
-export { official, unofficial, infoService, nginx, cloudflare };
