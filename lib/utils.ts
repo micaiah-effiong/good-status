@@ -1,6 +1,5 @@
-import { response, Response } from "express";
-import goodStatus from "../types";
-import checkData from "./checkData";
+import { Response } from "express";
+import { GoodStatusResponse, Responses } from "../types";
 
 /**
  * @param {any} statusObj - collection of status code handlers
@@ -9,26 +8,22 @@ import checkData from "./checkData";
  * @private
  */
 export function setStatusHandler(
-  statusObj: Record<
-    string,
-    | GoodStatus.Responses.Official
-    | GoodStatus.Responses.Unofficial
-    | GoodStatus.Responses.InfoService
-    | GoodStatus.Responses.Nginx
-    | GoodStatus.Responses.Cloudflare
-  >,
-  statusHandler: any,
+  statusObj: Record<string, (data?: any) => Response>,
+  statusHandler:
+    | Responses.Official
+    | Responses.Unofficial
+    | Responses.InfoService
+    | Responses.Nginx
+    | Responses.Cloudflare,
   res: Response
 ) {
   Object.keys(statusHandler).forEach((key: string) => {
-    const resFunction = statusHandler[key];
+    const resFunction: GoodStatusResponse = statusHandler[key];
     statusObj[key] = resFunction.bind(res);
   });
 }
 
-export function getCodeFn(
-  code: number
-): (data?: any) => Response<any, Record<string, any>> {
+export function getCodeFn(code: number) {
   return function (
     this: Response<any, Record<string, any>>,
     data?: any
@@ -37,4 +32,18 @@ export function getCodeFn(
     const res = checkData(this, data);
     return res;
   };
+}
+
+function checkData(
+  res: Response,
+  data: any
+): Response<any, Record<string, any>> {
+  if (res.goodStatus.config.send) {
+    if (typeof data === "object") {
+      return res.json(data);
+    }
+    return res.send(data);
+  }
+
+  return res;
 }
