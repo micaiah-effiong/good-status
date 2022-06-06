@@ -1,62 +1,62 @@
 import gs from "../lib";
 
-describe("Initialising gs middleware with wrong congiguration", function () {
-  it("set wrong configuration data type", function () {
-    const init = () => gs(" " as GoodStatus.Config);
-    expect(init).toThrow("config must be an object");
-  });
-
-  it("set middleware configuration to array type", function () {
-    const init = () => gs(new Array() as GoodStatus.Config);
-    expect(init).toThrow("config must be an object");
-  });
-
-  /*  it("set invalid resValue in middleware config", function () {
-    const mid = gs({ resValue: 4});
-    const req = {};
-    const res = {};
-    const next = () => {};
-    mid(req, res, next);
-    should().not.exist(res.gs, "no status attribute attached");
-  });*/
-});
-
-describe("Initialise gs middleware", function () {
-  describe("initialise without statusAttribute", function () {
+describe("Initialise goodStatus middleware", function () {
+  describe("initialise without extend", function () {
     it("set status code functions on response object", function () {
       const mid = gs();
       const req: any = {};
       const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      expect(res.gs).not.toBeDefined();
+      expect(res.goodStatus).toBeDefined();
+      expect(res.ok).not.toBeDefined();
     });
   });
 
-  describe("initialise with statusAttribute", function () {
-    const mid = gs({ statusAttribute: "gs" });
+  describe("initialise with extend", function () {
     it("set status code functions on response object", function () {
+      const mid = gs({ extend: true });
       const req: any = {};
       const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      expect(res.gs).toBeDefined();
+      expect(res.goodStatus).toBeDefined();
+      expect(res.ok).toBeDefined();
+      expect(res.notFound).toBeDefined();
     });
+  });
 
-    it("should have ok() method on gs Object", function () {
+  describe("initialise without unofficial and extra status", function () {
+    it("set status code functions on response object", function () {
+      const mid = gs({ extend: true });
       const req: any = {};
       const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      expect(res.gs.ok).toBeDefined();
+      expect(res.thisIsFine).not.toBeDefined();
+      expect(res.loginTimeout).not.toBeDefined();
+      expect(res.noResponse).not.toBeDefined();
+      expect(res.webServerReturnedAnUnknownError).not.toBeDefined();
     });
+  });
 
-    it("should have badRequest()", function () {
+  describe("initialise with unofficial and extra status", function () {
+    it("set status code functions on response object", function () {
+      const mid = gs({
+        extend: true,
+        unofficial: true,
+        infoService: true,
+        nginx: true,
+        cloudflare: true,
+      });
       const req: any = {};
       const res: any = {};
       const next = () => {};
       mid(req, res, next);
-      expect(res.gs).toBeDefined();
+      expect(res.thisIsFine).toBeDefined();
+      expect(res.loginTimeout).toBeDefined();
+      expect(res.noResponse).toBeDefined();
+      expect(res.webServerReturnedAnUnknownError).toBeDefined();
     });
   });
 });
