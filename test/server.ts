@@ -5,35 +5,15 @@ import goodStatus from "../lib/index";
 const app = express();
 const server = http.createServer(app);
 
-// import api responses
-
 // add middleware
 app.use(express.json());
 app.use(goodStatus());
 app.use(
   goodStatus({
-    unofficial: true,
-    infoService: true,
-    nginx: true,
-    cloudflare: true,
-    statusAttribute: "gs",
+    send: true,
+    extend: true,
   })
 );
-/*app.get("/continue", (req, res) => {
-  res.continue();
-});
-
-app.get("/switchingProtocol", (req, res) => {
-  res.switchingProtocol();
-});
-
-app.get("/processing", (req, res) => {
-  res.processing();
-});
-
-app.get("/earlyHint", (req, res) => {
-  res.earlyHint();
-});*/
 
 app.get("/ok", (req, res) => {
   res.ok();
@@ -44,8 +24,7 @@ app.post("/created", (req, res) => {
   res.created(req.body);
 });
 
-app.get("/accepted", (req, res) => {
-  // res.accepted();
+app.get("/accepted", goodStatus({ extend: false, send: true }), (req, res) => {
   res.goodStatus.accepted();
 });
 
@@ -121,9 +100,13 @@ app.post("/badRequest", (req, res) => {
   });
 });
 
-app.get("/unauthorized", (req, res) => {
-  res.unauthorized({ msg: "require authentication" });
-});
+app.get(
+  "/unauthorized",
+  goodStatus({ extend: true, send: false }),
+  (req, res) => {
+    res.unauthorized().json({ msg: "require authentication" });
+  }
+);
 
 app.get("/paymentRequired", (req, res) => {
   res.paymentRequired();
@@ -296,6 +279,8 @@ app.use(
     infoService: true,
     nginx: true,
     cloudflare: true,
+    send: true,
+    extend: true,
   })
 );
 
@@ -351,9 +336,9 @@ app.get("/networkReadTimeoutError", (req, res) => {
   res.networkReadTimeoutError();
 });
 
-app.get("/sendConfig", goodStatus({ send: false }), (req, res) => {
-  res.ok().json({ msg: "require authentication" });
-});
+// app.get("/sendConfig", goodStatus({ send: false }), (req, res) => {
+//   res.ok().json({ msg: "require authentication" });
+// });
 
 app.get("/ifs-login-time-out", (req, res) => {
   res.loginTimeout();
