@@ -2,10 +2,11 @@
   "name": "good-status",
   "version": "2.0.0",
   "description": "An express middleware to simplify api responses and status codes",
-  "main": "index.js",
+  "main": "./index.ts",
   "scripts": {
-    "test": "jest",
-    "postinstall": "tsc"
+    "test": "jest --detectOpenHandles",
+    "postinstall": "tsc",
+    "build": "tsc"
   },
   "keywords": [
     "api",
