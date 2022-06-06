@@ -1,3 +1,2 @@
-const goodStatus = require("./lib");
-
-module.exports = goodStatus;
+import goodStatus from "./lib";
+export default goodStatus;
