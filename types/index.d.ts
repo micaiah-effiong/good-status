@@ -53,9 +53,7 @@ declare module goodStatus {
   }
 }
 
-declare function goodStatus<T>(
-  options?: goodStatus.Options<T>
-): NextHandleFunction;
+declare function goodStatus(options?: goodStatus.Options): NextHandleFunction;
 
 export = goodStatus;
 
