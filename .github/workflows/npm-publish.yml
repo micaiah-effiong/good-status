@@ -37,9 +37,9 @@ jobs:
 
   publish_to_npm:
     runs-on: ubuntu-latest
-    if: github.ref == "refs/heads/main"
     needs:
       - run_unit_test
+    if: github.ref == "refs/heads/main"
 
     steps:
       - name: Checkout
