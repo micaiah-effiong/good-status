@@ -1,9 +1,7 @@
 # good-status
 
 [![Build Status](https://travis-ci.com/micaiah-effiong/good-status.svg?branch=main)](https://travis-ci.com/micaiah-effiong/good-status)
-
 [![check](https://github.com/micaiah-effiong/good-status/actions/workflows/npm-publish.yml/badge.svg??branch=main)](https://github.com/micaiah-effiong/good-status)
-
 [![Coverage Status](https://coveralls.io/repos/github/micaiah-effiong/good-status/badge.svg?branch=main)](https://coveralls.io/github/micaiah-effiong/good-status?branch=main)
 
 [![npm package](https://img.shields.io/npm/v/good-status)](https://www.npmjs.com/package/good-status)
