@@ -1,6 +1,12 @@
 # good-status
 
 [![Build Status](https://travis-ci.com/micaiah-effiong/good-status.svg?branch=main)](https://travis-ci.com/micaiah-effiong/good-status)
+[![check](https://github.com/micaiah-effiong/good-status/actions/workflows/npm-publish.yml/badge.svg??branch=main)](https://github.com/micaiah-effiong/good-status)
+
+[![npm package](https://img.shields.io/npm/v/good-status)](https://www.npmjs.com/package/good-status)
+[![npm package](https://img.shields.io/npm/l/good-status)](https://www.npmjs.com/package/good-status)
+[![npm package](https://img.shields.io/npm/dt/good-status)](https://www.npmjs.com/package/good-status)
+[![npm package](https://img.shields.io/npm/dm/good-status)](https://www.npmjs.com/package/good-status)
 
 Simple express middleware for sending standard status response.
 
