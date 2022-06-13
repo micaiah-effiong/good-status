@@ -46,9 +46,29 @@ declare module goodStatus {
      * @default false
      */
     extend?: boolean;
+
+    /**
+     * @description unofficial status codes
+     * @see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Unofficial_codes
+     */
     unofficial?: boolean;
+
+    /**
+     * @description cloudflare status codes
+     * @see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services
+     */
     infoService?: boolean;
+
+    /**
+     * @description nginx status codes
+     * @see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx
+     */
     nginx?: boolean;
+
+    /**
+     * @description cloudflare status codes
+     * @see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare
+     */
     cloudflare?: boolean;
   }
 }
