@@ -11,7 +11,7 @@ on:
 
   release:
     types:
-      - publish
+      - published
 
 jobs:
   run_unit_test:
