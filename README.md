@@ -50,7 +50,7 @@ app.get("/user", (req, res) => {
 
 | Optioins    | Default | Description                                                                                         |
 | :---------- | :-----: | :-------------------------------------------------------------------------------------------------- |
-| send        |  true   | This returns the response object to the user for further use                                        |
+| send        |  false  | This returns the response object to the user for further use                                        |
 | unofficial  |  false  | This specifies the use of unoficial status code                                                     |
 | extend      |  false  | When true all good-status response function will be populated to the response                       |
 | nginx       |  false  | When true, all status codes for `Nginx` will be available                                           |
