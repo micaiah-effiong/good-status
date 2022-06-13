@@ -1,6 +1,6 @@
 import http from "http";
 import express from "express";
-import goodStatus from "../lib/index";
+import goodStatus from "../";
 
 const app = express();
 const server = http.createServer(app);
