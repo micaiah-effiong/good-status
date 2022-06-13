@@ -9,6 +9,10 @@ on:
     branches:
       - main
 
+  release:
+    types:
+      - publish
+
 jobs:
   run_unit_test:
     runs-on: ${{ matrix.os }}
