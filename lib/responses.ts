@@ -1,7 +1,8 @@
-const status = require("./status-codes");
-const { getCodeFn } = require("./utils");
+import { Responses } from "../types";
+import status from "./status-codes";
+import { getCodeFn } from "./utils";
 
-const official = {
+export const official: Responses.Official = {
   // 2**
   ok: getCodeFn(status.OFFICIAL.HTTP_OK),
   created: getCodeFn(status.OFFICIAL.HTTP_CREATED),
@@ -17,7 +18,7 @@ const official = {
   imUsed: getCodeFn(status.OFFICIAL.HTTP_IM_USED),
 
   // 3**
-  multipleChoice: getCodeFn(status.OFFICIAL.HTTP_MULTIPLE_CHOICE),
+  multipleChoices: getCodeFn(status.OFFICIAL.HTTP_MULTIPLE_CHOICE),
   movedPermanently: getCodeFn(status.OFFICIAL.HTTP_MOVED_PERMANENTLY),
   found: getCodeFn(status.OFFICIAL.HTTP_FOUND),
   seeOther: getCodeFn(status.OFFICIAL.HTTP_SEE_OTHER),
@@ -50,17 +51,17 @@ const official = {
   expectationFailed: getCodeFn(status.OFFICIAL.HTTP_EXPECTATION_FAILED),
   iAmATeapot: getCodeFn(status.OFFICIAL.HTTP_I_AM_A_TEAPOT),
   misdirectedRequest: getCodeFn(status.OFFICIAL.HTTP_MISDIRECTED_REQUEST),
-  unprocessableEntry: getCodeFn(status.OFFICIAL.HTTP_UNPROCESSABLE_ENTRY),
+  unprocessableEntity: getCodeFn(status.OFFICIAL.HTTP_UNPROCESSABLE_ENTRY),
   locked: getCodeFn(status.OFFICIAL.HTTP_LOCKED),
   failedDependency: getCodeFn(status.OFFICIAL.HTTP_FAILED_DEPENDENCY),
   tooEarly: getCodeFn(status.OFFICIAL.HTTP_TOO_EARLY),
   upgradeRequired: getCodeFn(status.OFFICIAL.HTTP_UPGRADE_REQUIRED),
   preconditionRequired: getCodeFn(status.OFFICIAL.HTTP_PRECONDITION_REQUIRED),
-  tooManyRequest: getCodeFn(status.OFFICIAL.HTTP_TOO_MANY_REQUEST),
+  tooManyRequests: getCodeFn(status.OFFICIAL.HTTP_TOO_MANY_REQUEST),
   requestHeaderFieldsTooLarge: getCodeFn(
     status.OFFICIAL.HTTP_REQUEST_HEADER_FIELDS_TOO_LARGE
   ),
-  httpUnavailableForLegalReasons: getCodeFn(
+  unavailableForLegalReasons: getCodeFn(
     status.OFFICIAL.HTTP_UNAVAILABLE_FOR_LEGAL_REASONS
   ),
 
@@ -84,7 +85,7 @@ const official = {
   ),
 };
 
-const unofficial = {
+export const unofficial: Responses.Unofficial = {
   thisIsFine: getCodeFn(status.UNOFFICIAL.HTTP_THIS_IS_FINE),
   pageExpired: getCodeFn(status.UNOFFICIAL.HTTP_PAGE_EXPIRED),
   enhanceYourCalm: getCodeFn(status.UNOFFICIAL.HTTP_ENHANCE_YOUR_CALM),
@@ -109,15 +110,15 @@ const unofficial = {
   ),
 };
 
-const infoService = {
+export const infoService: Responses.InfoService = {
   loginTimeout: getCodeFn(
     status.INTERNET_INFORMATION_SERVICE.HTTP_LOGIN_TIME_OUT
   ),
   retryWith: getCodeFn(status.INTERNET_INFORMATION_SERVICE.HTTP_RETRY_WITH),
-  redirect: getCodeFn(status.INTERNET_INFORMATION_SERVICE.HTTP_REDIRECT),
+  ifRedirect: getCodeFn(status.INTERNET_INFORMATION_SERVICE.HTTP_REDIRECT),
 };
 
-const nginx = {
+export const nginx: Responses.Nginx = {
   noResponse: getCodeFn(status.NGINX.HTTP_NO_RESPONSE),
   headerTooLarge: getCodeFn(status.NGINX.HTTP_REQUEST_HEADER_TOO_LARGE),
   sslCertError: getCodeFn(status.NGINX.HTTP_SSL_CERTIFICATE_ERROR),
@@ -126,7 +127,7 @@ const nginx = {
   clientClosedRequest: getCodeFn(status.NGINX.HTTP_CLIENT_CLOSED_REQUEST),
 };
 
-const cloudflare = {
+export const cloudflare: Responses.Cloudflare = {
   webServerReturnedAnUnknownError: getCodeFn(
     status.CLOUDFLARE.HTTP_WEB_SERVER_RETURNED_AN_UNKNOWN_ERROR
   ),
@@ -141,9 +142,3 @@ const cloudflare = {
   railgunError: getCodeFn(status.CLOUDFLARE.HTTP_RAILGUN_ERROR),
   notLoggedIn: getCodeFn(status.CLOUDFLARE.HTTP_NOT_LOGGED_IN),
 };
-
-exports.official = official;
-exports.unofficial = unofficial;
-exports.infoService = infoService;
-exports.nginx = nginx;
-exports.cloudflare = cloudflare;

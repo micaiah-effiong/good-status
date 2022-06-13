@@ -1,4 +1,4 @@
-const OFFICIAL = {
+const OFFICIAL: Readonly<Record<string, number>> = {
   // 2XX
   HTTP_OK: 200,
   HTTP_CREATED: 201,
@@ -73,7 +73,7 @@ const OFFICIAL = {
 /*
  * UNOFFICIAL STATUS CODES
  */
-const UNOFFICIAL = {
+const UNOFFICIAL: Readonly<Record<string, number>> = {
   HTTP_THIS_IS_FINE: 218,
   HTTP_PAGE_EXPIRED: 419,
   // HTTP_METHOD_FAILED: 420, // DEPRECAATED BY SPRING FRAMEWORK
@@ -92,7 +92,7 @@ const UNOFFICIAL = {
 /*
  * INTERNET INFORMATION SERVICE
  */
-const INTERNET_INFORMATION_SERVICE = {
+const INTERNET_INFORMATION_SERVICE: Readonly<Record<string, number>> = {
   HTTP_LOGIN_TIME_OUT: 440,
   HTTP_RETRY_WITH: 449,
   HTTP_REDIRECT: 451,
@@ -101,7 +101,7 @@ const INTERNET_INFORMATION_SERVICE = {
 /*
  * NGINX
  */
-const NGINX = {
+const NGINX: Readonly<Record<string, number>> = {
   HTTP_NO_RESPONSE: 444,
   HTTP_REQUEST_HEADER_TOO_LARGE: 494,
   HTTP_SSL_CERTIFICATE_ERROR: 495,
@@ -113,7 +113,7 @@ const NGINX = {
 /*
  * CLOUDFLARE
  */
-const CLOUDFLARE = {
+const CLOUDFLARE: Readonly<Record<string, number>> = {
   HTTP_WEB_SERVER_RETURNED_AN_UNKNOWN_ERROR: 520,
   HTTP_WEB_SERVER_IS_DOWN: 521,
   HTTP_CONNECTION_TIMED_OUT: 522,
@@ -125,15 +125,15 @@ const CLOUDFLARE = {
   HTTP_NOT_LOGGED_IN: 530,
 };
 
-const STATUS = Object.freeze({
-  OFFICIAL: Object.freeze(OFFICIAL),
-  UNOFFICIAL: Object.freeze(UNOFFICIAL),
-  INTERNET_INFORMATION_SERVICE: Object.freeze(INTERNET_INFORMATION_SERVICE),
-  NGINX: Object.freeze(NGINX),
-  CLOUDFLARE: Object.freeze(CLOUDFLARE),
-});
+const STATUS: Readonly<Record<string, Record<string, number>>> = {
+  OFFICIAL,
+  UNOFFICIAL,
+  INTERNET_INFORMATION_SERVICE,
+  NGINX,
+  CLOUDFLARE,
+};
 
-module.exports = STATUS;
+export default STATUS;
 
 /*
  * AWS ELASTIC LOAD BALANCER
