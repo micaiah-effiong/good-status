@@ -3,7 +3,7 @@ name: Run tests
 on:
   push:
     branches:
-      - main
+      - "*"
 
   pull_request:
     branches:
@@ -38,7 +38,8 @@ jobs:
   publish_to_npm:
     runs-on: ubuntu-latest
     if: github.ref == "refs/heads/main"
-    needs: run_unit_test
+    needs:
+      - run_unit_test
 
     steps:
       - name: Checkout
