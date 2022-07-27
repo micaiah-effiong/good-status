@@ -7,7 +7,6 @@ const server = http.createServer(app);
 
 // add middleware
 app.use(express.json());
-app.use(goodStatus());
 app.use(
   goodStatus({
     send: true,

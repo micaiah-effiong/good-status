@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { NextHandleFunction } from "connect";
+import type { Request, Response, NextFunction } from "express";
+import type { NextHandleFunction } from "connect";
 
 declare global {
   namespace GoodStatus {
@@ -14,7 +14,7 @@ declare global {
         Responses.Nginx {
       goodStatus: {
         config: GoodStatus.Config;
-      } & Response;
+      } & Response<any, Record<string, any>>;
     }
   }
 }
